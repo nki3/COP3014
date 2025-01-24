@@ -2,20 +2,17 @@
 // Created by NateB on 1/23/2025.
 //
 
-#include "BudgetCalculator.h"
-
 #include <iostream>
 #include <iomanip>
 #include <utility>
-#include <format>
 
-void print_table(std::string table_name, std::string column_name, std::pair<std::string, int> rows[], int row_length) {
+void print_table(const std::string &table_name, const std::string &column_name, std::pair<std::string, int> rows[], const int row_length) {
 
     const int name_width = 18;
     const int value_width = 7;
 
     // Define lambda function (synonymous with an anonymous functor) for outputting a single formatting row with two columns
-    auto print_row = [](std::string name, std::string value) {
+    auto print_row = [](const std::string& name, const std::string& value) {
     std::cout << std::left << std::setw(name_width) << name
         << std::right << std::setw(value_width) << value << std::endl;
     };
@@ -56,8 +53,13 @@ int main() {
     int profit = total_income - total_cost;
 
     // Check for negative values so the sign would be placed before the $; i.e. -$10 instead of $-10
-    std::string profit_formatted = (profit < 0) ? std::format("-${}", abs(profit)) : std::format("${}", abs(profit));
+    std::stringstream profit_formatted;
+    if (profit < 0) {
+        profit_formatted << "-";
+    }
+    profit_formatted << "$" << abs(profit);
 
+    // Expenses table
     std::pair<std::string, int> costs[] = {
         {"Venue", venue_cost},
         {"Food", food_cost},
@@ -65,6 +67,7 @@ int main() {
         {"Total Cost", total_cost}
     };
 
+    // Income table
     std::pair<std::string, int> income[] = {
         {"Tickets", tickets_sold},
         {"Donation", donations},
@@ -75,7 +78,7 @@ int main() {
     print_table("Costs", "Amount", costs, 4);
     std::cout << std::endl;
     print_table("Income", "Amount", income, 3);
-    std::cout << std::endl << "Total Raised for Spud4Kids: " << profit_formatted << std::endl;
+    std::cout << std::endl << "Total Raised for Spud4Kids: " << profit_formatted.str() << std::endl;
 
     return 0;
 }
