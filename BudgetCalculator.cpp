@@ -14,16 +14,22 @@ void print_table(std::string table_name, std::string column_name, std::pair<std:
     const int name_width = 18;
     const int value_width = 7;
 
+    // Define lambda function (synonymous with an anonymous functor) for outputting a single formatting row with two columns
     auto print_row = [](std::string name, std::string value) {
     std::cout << std::left << std::setw(name_width) << name
         << std::right << std::setw(value_width) << value << std::endl;
     };
 
+    // Table header
     print_row(table_name, column_name);
     print_row("------------", "-------");
+
+    // Loop through the rows except for the last row which is saved for the footer
     for (int i = 0; i < row_length-1; i++) {
         print_row(rows[i].first, std::to_string(rows[i].second));
     }
+
+    // Table footer
     print_row("------------", "-------");
     print_row(rows[row_length-1].first, std::to_string(rows[row_length-1].second));
 }
@@ -48,6 +54,8 @@ int main() {
     int total_cost = venue_cost + food_cost +entertainment_cost;
     int total_income = tickets_sold*ticket_price + donations;
     int profit = total_income - total_cost;
+
+    // Check for negative values so the sign would be placed before the $; i.e. -$10 instead of $-10
     std::string profit_formatted = (profit < 0) ? std::format("-${}", abs(profit)) : std::format("${}", abs(profit));
 
     std::pair<std::string, int> costs[] = {
