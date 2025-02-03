@@ -11,7 +11,8 @@ void print_table(const std::string &table_name, const std::string &column_name, 
     const int name_width = 18;
     const int value_width = 7;
 
-    // Define lambda function (synonymous with an anonymous functor) for outputting a single formatting row with two columns
+    // Define lambda expression (synonymous with an anonymous function) for outputting a single formatting row with two columns
+    // https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp?view=msvc-170
     auto print_row = [](const std::string& name, const std::string& value) {
     std::cout << std::left << std::setw(name_width) << name
         << std::right << std::setw(value_width) << value << std::endl;
@@ -48,8 +49,8 @@ int main() {
     std::cout << "Enter the amount of donations: ";
     std::cin >> donations;
 
-    int total_cost = venue_cost + food_cost +entertainment_cost;
-    int total_income = tickets_sold*ticket_price + donations;
+    int total_cost = venue_cost + food_cost + entertainment_cost;
+    int total_income = tickets_sold * ticket_price + donations;
     int profit = total_income - total_cost;
 
     // Check for negative values so the sign would be placed before the $; i.e. -$10 instead of $-10
