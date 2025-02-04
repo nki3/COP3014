@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <utility>
+#include <sstream>
 
 void print_table(const std::string &table_name, const std::string &column_name, std::pair<std::string, int> rows[], const int row_length) {
 
