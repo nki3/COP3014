@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <iostream>
 
+// Function for displaying the quality of the harvest
 void displayMessage(int count) {
     std::string message = "Harvest Message: ";
     if (count < 100) {
@@ -17,6 +18,7 @@ void displayMessage(int count) {
     std::cout << message << std::endl;
 }
 
+// Function for displaying the total value of the spuds
 double calculateTotalValue(double weight, double pricePerPound) {
     return weight * pricePerPound;
 }
@@ -25,6 +27,8 @@ int main() {
     int spudTotal;
     double averageWeight;
     double pricePerPound;
+
+    // Gets user input
     std::cout << "Welcome to the SpudCulator!" << std::endl << std::endl;
     std::cout << "Enter the total number of spuds: ";
     std::cin >> spudTotal;
