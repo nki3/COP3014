@@ -6,9 +6,11 @@
 #include <iostream>
 #include <cmath>
 
-std::string names[10];
-int quantities[10];
-double prices[10];
+
+const int max_array_size = 10;
+std::string names[max_array_size];
+int quantities[max_array_size];
+double prices[max_array_size];
 
 void addItem(int index, std::string name, int quantity, double price) {
     names[index] = name;
@@ -73,7 +75,7 @@ int main() {
     std::cout << "Welcome to SpudMart!" << std::endl << std::endl;
 
     int items = 0;
-    while (items < 10) {
+    while (items < max_array_size) {
         std::string name;
         int quantity;
         double price;
