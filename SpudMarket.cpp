@@ -31,6 +31,8 @@ void displayReceipt(std::string names[], int quantities[], double prices[], int 
         << std::endl;
     };
 
+    std::cout << std::endl << "Your SpudMart Receipt:" << std::endl << std::endl;
+
     // Table header
     print_row("Item", "Qty", "Total Price");
     std::cout << std::string(name_width, '-') + std::string(quantity_width, '-') + std::string(total_width, '-');
@@ -48,6 +50,21 @@ void displayReceipt(std::string names[], int quantities[], double prices[], int 
 
         print_row(names[i], std::to_string(quantities[i]), price_formatted.str());
     }
+
+    // Calculate grand total
+    double grand_total = 0;
+    for (int i = 0; i < itemCount; i++) {
+        grand_total += quantities[i] * prices[i];
+    }
+
+    // Format the grand total
+    std::stringstream grand_total_formatted;
+    if (grand_total < 0) {
+        grand_total_formatted << "-";
+    }
+    grand_total_formatted << "$" <<std::setprecision(2) << std::fixed << fabs(grand_total);
+
+    std::cout << std::endl << "Grand Total: " << grand_total_formatted.str() << std::endl;
 
 }
 
@@ -76,24 +93,8 @@ int main() {
         items++;
     }
 
-    std::cout << std::endl << "Your SpudMart Receipt:" << std::endl << std::endl;
 
     displayReceipt(names, quantities, prices, items);
-
-    // Calculate grand total
-    double grand_total = 0;
-    for (int i = 0; i < items; i++) {
-        grand_total += quantities[i] * prices[i];
-    }
-
-    // Format the grand total
-    std::stringstream grand_total_formatted;
-    if (grand_total < 0) {
-        grand_total_formatted << "-";
-    }
-    grand_total_formatted << "$" <<std::setprecision(2) << std::fixed << fabs(grand_total);
-
-    std::cout << std::endl << "Grand Total: " << grand_total_formatted.str() << std::endl;
 
     return 0;
 }
