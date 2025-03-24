@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(COP3014
     BudgetCalculator.cpp
-    SimplePosSystem.cpp)
+    SimplePosSystem.cpp
+    SpudMarket.cpp)
