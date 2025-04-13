@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <iostream>
 #include <cmath>
+#include <sstream>
 
 
 const int max_array_size = 10;
